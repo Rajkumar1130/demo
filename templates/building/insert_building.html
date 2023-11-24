@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    nav {
+        background-color: #666;
+        padding: 0.5em;
+    }
+
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        padding: 1em;
+        margin: 0 1em;
+    }
+
+    .container {
+        margin: 100px auto;
+        width: 300px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #f4f4f4;
+    }
+
+    .container h2 {
+        margin: 0;
+    }
+
+    .form-group {
+        margin: 15px 0;
+    }
+
+    .form-group label {
+        display: block;
+        text-align: left;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-group button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+<nav>
+    <a href="{% url 'home_login' %}">Home</a>
+    <a href="{% url 'home' %}">Log out</a>
+</nav>
+<div class="container">
+    <h2 style="margin-bottom: 20px;">Insert New Building</h2>
+    <form method="post" style="display: flex; flex-direction: column; align-items: center;">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group" style="width: 100%;">
+                <label for="{{ field.id_for_label }}" style="text-align: left; width: 100%;">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <div class="errorlist">{{ field.errors.as_text }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <div class="form-group">
+            <button type="submit" >Add Building</button>
+        </div>
+        
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    nav {
+        background-color: #666;
+        padding: 0.5em;
+    }
+
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        padding: 1em;
+        margin: 0 1em;
+    }
+
+    .container {
+        margin: 100px auto;
+        width: 300px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #f4f4f4;
+    }
+
+    .container h2 {
+        margin: 0;
+    }
+
+    .form-group {
+        margin: 15px 0;
+    }
+
+    .form-group label {
+        display: block;
+        text-align: left;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-group button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+<nav>
+    <a href="{% url 'home_login' %}">Home</a>
+    <a href="{% url 'home' %}">Log out</a>
+</nav>
+<div class="container">
+    <h2 style="margin-bottom: 20px;">Update Enclosure Info.</h2>
+    <form method="post" style="width: 100%;">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="area">Square Foot</label>
+            <input type="number" id="square_foot" name="square_foot" value="{{ form.square_foot.value }}" placeholder="Enter square foot" required>
+        </div>
+    
+        <div class="form-group">
+            <label for="floors">building_id</label>
+            <input type="number" id="building_id" name="building_id" value="{{ form.building_id.value }}" placeholder="Enter Building ID" required>
+        </div>
+    
+        <div class="form-group">
+            <button type="submit">Update</button>
+        </div>
+    </form>
+    
+</div>
+{% endblock %}

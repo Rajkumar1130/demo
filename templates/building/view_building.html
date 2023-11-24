@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    nav {
+        background-color: #666;
+        padding: 0.5em;
+    }
+
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        padding: 1em;
+        margin: 0 1em;
+    }
+
+    .container {
+        margin: 100px auto;
+        width: 90%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #f4f4f4;
+    }
+
+    .container h2 {
+        margin: 0;
+    }
+
+    .form-group {
+        margin: 15px 0;
+    }
+
+    .form-group label {
+        display: block;
+        text-align: left;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-group button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+<nav>
+    <a href="{% url 'home_login' %}">Home</a>
+    <a href="{% url 'home' %}">Log out</a>
+</nav>
+<div class="container">
+    <h2>View Building Information</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <tr style="background-color: #f2f2f2;">
+            <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Building Name</th>
+            <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Purpose</th>
+            <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Location</th>
+            <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Area</th>
+            <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Number of Floors</th>
+            <!-- Add other fields as necessary -->
+        </tr>
+        {% for building in buildings %}
+        <tr>
+            <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">{{ building.name }}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">{{ building.purpose }}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">{{ building.location }}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">{{ building.area }}</td>
+            <td style="border: 1px solid #ddd; padding: 8px;text-align: center;">{{ building.floors }}</td>
+            <!-- Add other fields as necessary -->
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

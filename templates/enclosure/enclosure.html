@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+<head>
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #666;
+            padding: 0.5em;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 1em;
+            margin: 0 1em;
+        }
+
+       
+        .container {
+            margin: 100px auto;
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f4f4f4;
+        }
+
+        .container h2 {
+            margin: 0;
+        }
+
+        .form-group {
+            margin: 15px 0;
+        }
+
+        .form-group label {
+            display: block;
+            text-align: left;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home_login' %}">Home</a>
+        <a href="{% url 'home' %}">Log out</a>
+    </nav>
+
+    <div class="container">
+        <h2>Enclosure</h2>
+        <div class="form-group" >
+            <label for="action-menu" style="display: block; text-align: center; margin-bottom: 5px;">Choose an action:</label>
+            <select id="action-menu">
+                <option value="">Select...</option>
+                <option value="insert">Insert New Enclosure</option>
+                <option value="update">Update Enclosure Information</option>
+                <option value="view">View Enclosure</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="button" id="go-button">Go</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var goButton = document.getElementById('go-button');
+            var selectMenu = document.getElementById('action-menu');
+            goButton.addEventListener('click', function() {
+                var value = selectMenu.value;
+                if (value === 'insert') {
+                    window.location.href = '{% url "insert_enclosure" %}';
+                } else if (value === 'update') {
+                    window.location.href = '{% url "select_enclosure" %}';
+                } else if (value === 'view') {
+                    window.location.href = '{% url "view_enclosure" %}';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+{% endblock %}
